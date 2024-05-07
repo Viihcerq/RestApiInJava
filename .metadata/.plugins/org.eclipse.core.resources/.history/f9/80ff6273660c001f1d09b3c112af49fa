@@ -1,0 +1,21 @@
+package br.com.api;
+
+public class Greeting {
+	private final long id;
+	private final long content;
+	
+	public Greeting(long id, long content) {
+		super();
+		this.id = id;
+		this.content = content;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public long getContent() {
+		return content;
+	}
+	
+}
