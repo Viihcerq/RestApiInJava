@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="br.com.api.service.PersonService"/>
+    <fullyQualifiedTypeName name="br.com.api.model.Person"/>
+    <fullyQualifiedTypeName name="br.com.api.exception.ExceptionResponse"/>
+    <fullyQualifiedTypeName name="br.com.api.exception.ResourceNotFoundException"/>
+</qualifiedTypeNameHistroy>
