@@ -3,48 +3,47 @@ package br.com.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import br.com.api.model.Person;
+import br.com.api.data.vo.v1.PersonVO;
+import br.com.api.data.vo.v2.PersonVOV2;
 import br.com.api.service.PersonService;
+import br.com.api.util.MediaType;
 
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person/v1")
 public class PersonController {
 	
 	@Autowired
 	private PersonService service;
 	///private PersonServices service = new PersonServices();
 	
-	@RequestMapping(method=RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Person> findAll() {
+	@GetMapping(produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,  MediaType.APPLICATION_YAML})
+	public List<PersonVO> findAll() {
 		return service.findAll();
 	}
 	
-	@RequestMapping(value = "/{id}",method=RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person findById(@PathVariable(value = "id") String id) {
+	@GetMapping(value = "/{id}",produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML})
+	public PersonVO findById(@PathVariable(value = "id") Long id) {
 		return service.findById(id);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person create(@RequestBody Person person) {
+	@PostMapping(consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML},produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML})
+	public PersonVO create(@RequestBody PersonVO person) {
 		return service.create(person);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person update(@RequestBody Person person) {
+	@PutMapping(consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML},produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YAML})
+	public PersonVO update(@RequestBody PersonVO person) {
 		return service.update(person);
 	}
 	
 	
-	@RequestMapping(value = "/{id}",method=RequestMethod.DELETE)
-	public void delete(@PathVariable(value = "id") String id) {
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
 		service.delete(id);
+		return ResponseEntity.noContent().build(); 
 	}
 }

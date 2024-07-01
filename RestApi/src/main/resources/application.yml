@@ -1,1 +1,14 @@
-spring.application.name=RestApi
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/restwithspring?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: 58235718Vi!
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    # properties:
+      # hibernate:
+        # dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: false
